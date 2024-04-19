@@ -78,7 +78,7 @@ async function updateIssue(data) {
 
     return { result: "successfully updated", _id: _id };
   } catch (err) {
-    return { error: "could not update", _id: _id, details: err.message };
+    return { error: "could not update", _id: data._id };
   }
 }
 
@@ -86,7 +86,7 @@ async function deleteIssue(id) {
   console.log(id);
   try {
     if (!checkIfId(id)) {
-      return { error: "missing _id" };
+      return { error: "could not delete", _id: id };
     }
     if (!(await checkIssueId(id))) {
       return { error: "could not delete", _id: id };

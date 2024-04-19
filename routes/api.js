@@ -34,13 +34,12 @@ module.exports = function (app) {
         const updateResult = await issueModel.updateIssue(body);
         return res.json(updateResult);
       } catch (err) {
-        return { error: "no update field(s) sent", _id: data._id };
+        return { error: "no update field(s) sent", _id: req.body._id };
       }
     })
 
     .delete(async (req, res) => {
       let body = req.body;
-      console.log(body);
       if (!body._id) return res.json({ error: "missing _id" });
       const result = await issueModel.deleteIssue(body._id);
       return res.json(result);
